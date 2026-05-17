@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import axios from 'axios';
+const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/token/', {
+      const response = await axios.post(`${API_URL}/token/`, {
         username: username, 
         password: password
       });

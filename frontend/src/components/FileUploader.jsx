@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Upload, Loader2, AlertCircle } from 'lucide-react';
+const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api';
 
 function FileUploader({ onUploadSuccess }) {
   const [file, setFile] = useState(null);
@@ -31,7 +32,7 @@ function FileUploader({ onUploadSuccess }) {
 
     setLoading(true);
     try {
-      await axios.post('http://127.0.0.1:8000/api/reports/upload/', formData, {
+      await axios.post(`${API_URL}/reports/upload/`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('access_token')}`,
           'Content-Type': 'multipart/form-data'

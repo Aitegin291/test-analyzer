@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -65,7 +66,7 @@ const Landing = () => {
   const handleDemoStart = async () => {
     try {
       // Автоматический запрос на получение токена
-      const response = await axios.post('http://127.0.0.1:8000/api/token/', {
+      const response = await axios.post(`${API_URL}/token/`, {
         username: 'demo_user', // Тот самый логин
         password: 'demo12345'  // Тот самый пароль
       });
